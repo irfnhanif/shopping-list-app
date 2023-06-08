@@ -28,4 +28,8 @@ public class ShoppingItem {
     public void setJudul(String judul) {
         this.judul = judul;
     }
+
+    public String getJudul() {
+        return judul;
+    }
 }

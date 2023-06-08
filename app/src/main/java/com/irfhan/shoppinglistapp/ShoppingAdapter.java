@@ -32,7 +32,10 @@ public class ShoppingAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
+        ShoppingItem s = this.shoppingList.get(position);
+        VH vh = (VH) holder;
+        vh.tvNama.setText(s.getNama());
+        vh.tvJumlah.setText(s.getJudul());
     }
 
     @Override
