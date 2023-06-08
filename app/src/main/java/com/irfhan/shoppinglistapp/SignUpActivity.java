@@ -5,6 +5,7 @@ import static android.content.ContentValues.TAG;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,7 +34,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         mAuth = FirebaseAuth.getInstance();
         etEmail = findViewById(R.id.et_email_signup);
         etPassword = findViewById(R.id.et_password_signup);
-        btnRegister = findViewById(R.id.btn_register);
+        btnRegister = findViewById(R.id.btn_login);
 
         btnRegister.setOnClickListener(this);
     }
@@ -52,10 +53,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                     Log.d(TAG, "createUserWithEmail:success");
                     FirebaseUser user = mAuth.getCurrentUser();
                     updateUI(user);
+                    Toast.makeText(SignUpActivity.this, "Sign Up: User is created", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                    SignUpActivity.this.startActivity(intent);
                 } else {
-                    // If sign in fails, display a message to the user.
                     Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                    Toast.makeText(SignUpActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "Sign Up failed.", Toast.LENGTH_SHORT).show();
                     updateUI(null);
                 }
             }
