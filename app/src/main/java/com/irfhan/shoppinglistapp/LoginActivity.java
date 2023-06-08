@@ -39,9 +39,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnLogin.setOnClickListener(this);
         btnSignUp.setOnClickListener(this);
     }
-    private void updateUI(FirebaseUser user) {
-
-    }
 
     @Override
     public void onClick(View view) {
@@ -65,11 +62,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Log.d(TAG, "signInWithEmail:success");
                     FirebaseUser user = mAuth.getCurrentUser();
                     Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                    updateUI(user);
+                    Intent intentMain = new Intent(LoginActivity.this, MainActivity.class);
+                    LoginActivity.this.startActivity(intentMain);
                 } else {
                     Log.w(TAG, "signInWithEmail:failure", task.getException());
                     Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-                    updateUI(null);
                 }
             }
         });
