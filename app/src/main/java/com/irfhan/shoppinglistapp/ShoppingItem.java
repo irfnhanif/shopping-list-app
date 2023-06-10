@@ -1,35 +1,35 @@
 package com.irfhan.shoppinglistapp;
 
 public class ShoppingItem {
-    private String id;
-    private String nama;
-    private String judul;
+    private String itemId;
+    private String name;
+    private String description;
 
-    public ShoppingItem(String nama, String judul) {
-        this.nama = nama;
-        this.judul = judul;
+    public ShoppingItem(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public String getItemId() {
+        return itemId;
     }
 
-    public String getNama() {
-        return nama;
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
     }
 
-    public void setNama(String nama) {
-        this.nama = nama;
+    public String getName() {
+        return name;
     }
 
-    public void setJudul(String judul) {
-        this.judul = judul;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getJudul() {
-        return judul;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

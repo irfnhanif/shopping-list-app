@@ -25,17 +25,17 @@ public class ShoppingAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(this.ctx).inflate(R.layout.item_layout, parent, false);
+        View v = LayoutInflater.from(ctx).inflate(R.layout.item_layout, parent, false);
         VH vh = new VH(v);
         return vh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ShoppingItem s = this.shoppingList.get(position);
+        ShoppingItem s = shoppingList.get(position);
         VH vh = (VH) holder;
-        vh.tvNama.setText(s.getNama());
-        vh.tvJumlah.setText(s.getJudul());
+        vh.tvNama.setText(s.getName());
+        vh.tvJumlah.setText(s.getDescription());
     }
 
     @Override
@@ -51,10 +51,10 @@ public class ShoppingAdapter extends RecyclerView.Adapter {
 
         VH(View rowView) {
             super(rowView);
-            this.tvNama = rowView.findViewById(R.id.tvNama);
-            this.tvJumlah = rowView.findViewById(R.id.tvJumlah);
-            this.btnEdit = rowView.findViewById(R.id.btnEdit);
-            this.btnDelete = rowView.findViewById(R.id.btnDelete);
+            tvNama = rowView.findViewById(R.id.tvNama);
+            tvJumlah = rowView.findViewById(R.id.tvJumlah);
+            btnEdit = rowView.findViewById(R.id.btnEdit);
+            btnDelete = rowView.findViewById(R.id.btnDelete);
         }
     }
 }
