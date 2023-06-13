@@ -24,9 +24,11 @@ public class ShoppingAdapter extends RecyclerView.Adapter {
     }
 
     public void setData(List<ShoppingItem> data) {
-        shoppingList = data;
+        shoppingList.clear();
+        shoppingList.addAll(data);
         notifyDataSetChanged();
     }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

@@ -1,5 +1,7 @@
 package com.irfhan.shoppinglistapp;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -20,8 +22,19 @@ public class ShoppingItemViewModel extends ViewModel {
     }
 
     public void getAllShoppingItems() {
-        shoppingItemRepository.getAllShoppingItems();
+        shoppingItemRepository.getAllShoppingItems(new ShoppingItemCallback() {
+            @Override
+            public void onShoppingItemReceived(List<ShoppingItem> items) {
+                dataList.setValue(items);
+            }
+
+            @Override
+            public void onShoppingItemError(String errorMessage) {
+                Log.e("ERROR", errorMessage);
+            }
+        });
     }
+
 
     public void addShoppingItem(String name, String description) {
         shoppingItemRepository.addShoppingItem(name, description);

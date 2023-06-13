@@ -9,30 +9,41 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ShoppingItemRepository {
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
-    private String url = " ";
+    private String url = "";
 
     public ShoppingItemRepository() {
         mDatabase = FirebaseDatabase.getInstance().getReference(url);
         mAuth = FirebaseAuth.getInstance();
     }
 
-    public void getAllShoppingItems() {
+    public void getAllShoppingItems(final ShoppingItemCallback callback) {
         String userId = mAuth.getCurrentUser().getUid();
         mDatabase.child("users").child(userId).child("items").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                List<ShoppingItem> items = new ArrayList<>();
+                for (DataSnapshot itemSnapshot : snapshot.getChildren()) {
+                    ShoppingItem shoppingItem = itemSnapshot.getValue(ShoppingItem.class);
+                    if (shoppingItem != null) {
+                        items.add(shoppingItem);
+                    }
+                }
+                callback.onShoppingItemReceived(items);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                callback.onShoppingItemError(error.getMessage());
             }
         });
     }
+
 
 
     public void addShoppingItem(String name, String description) {
