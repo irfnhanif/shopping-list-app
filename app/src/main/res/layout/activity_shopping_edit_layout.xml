@@ -7,7 +7,7 @@
     tools:context=".ShoppingEditActivity">
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvNamaBarang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nama Barang"
@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/etNamaBarang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -24,5 +24,32 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.079"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNamaBarang" />
+
+    <TextView
+        android:id="@+id/tvJumlahBarang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jumlah"
+        app:layout_constraintTop_toBottomOf="@+id/etNamaBarang"
+        tools:layout_editor_absoluteX="2dp" />
+
+    <EditText
+        android:id="@+id/etJumlahBarang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/tvJumlahBarang"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tambah"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="242dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
