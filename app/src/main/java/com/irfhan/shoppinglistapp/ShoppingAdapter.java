@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.irfhan.shoppinglistapp.model.ShoppingItem;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,24 +20,31 @@ public class ShoppingAdapter extends RecyclerView.Adapter {
     private List<ShoppingItem> shoppingList = new ArrayList<>();
 
     private final Context ctx;
-    public ShoppingAdapter(Context ctx, List<ShoppingItem> list) {
+    public ShoppingAdapter(Context ctx /*, List<ShoppingItem> list*/) {
         this.ctx = ctx;
-        this.shoppingList = list;
+//        this.shoppingList = list;
     }
+
+    public void setData(List<ShoppingItem> data) {
+        shoppingList.clear();
+        shoppingList.addAll(data);
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(this.ctx).inflate(R.layout.item_layout, parent, false);
+        View v = LayoutInflater.from(ctx).inflate(R.layout.item_layout, parent, false);
         VH vh = new VH(v);
         return vh;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ShoppingItem s = this.shoppingList.get(position);
+        ShoppingItem s = shoppingList.get(position);
         VH vh = (VH) holder;
-        vh.tvNama.setText(s.getNama());
-        vh.tvJumlah.setText(s.getJudul());
+        vh.tvNama.setText(s.getName());
+        vh.tvJumlah.setText(s.getDescription());
     }
 
     @Override
@@ -43,7 +52,7 @@ public class ShoppingAdapter extends RecyclerView.Adapter {
         return shoppingList.size();
     }
 
-    class VH extends RecyclerView.ViewHolder {
+    class VH extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView tvNama;
         public TextView tvJumlah;
         public Button btnEdit;
@@ -51,10 +60,22 @@ public class ShoppingAdapter extends RecyclerView.Adapter {
 
         VH(View rowView) {
             super(rowView);
-            this.tvNama = rowView.findViewById(R.id.tvNama);
-            this.tvJumlah = rowView.findViewById(R.id.tvJumlah);
-            this.btnEdit = rowView.findViewById(R.id.btnEdit);
-            this.btnDelete = rowView.findViewById(R.id.btnDelete);
+            tvNama = rowView.findViewById(R.id.tvNama);
+            tvJumlah = rowView.findViewById(R.id.tvJumlah);
+            btnEdit = rowView.findViewById(R.id.btnEdit);
+            btnDelete = rowView.findViewById(R.id.btnDelete);
+
+            btnEdit.setOnClickListener(this);
+            btnDelete.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            if (view.getId() == R.id.btnEdit){
+
+            } else {
+
+            }
         }
     }
 }
