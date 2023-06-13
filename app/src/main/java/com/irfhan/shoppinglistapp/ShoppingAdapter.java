@@ -18,9 +18,14 @@ public class ShoppingAdapter extends RecyclerView.Adapter {
     private List<ShoppingItem> shoppingList = new ArrayList<>();
 
     private final Context ctx;
-    public ShoppingAdapter(Context ctx, List<ShoppingItem> list) {
+    public ShoppingAdapter(Context ctx /*, List<ShoppingItem> list*/) {
         this.ctx = ctx;
-        this.shoppingList = list;
+//        this.shoppingList = list;
+    }
+
+    public void setData(List<ShoppingItem> data) {
+        shoppingList = data;
+        notifyDataSetChanged();
     }
     @NonNull
     @Override

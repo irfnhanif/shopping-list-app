@@ -12,7 +12,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ShoppingItemRepository {
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
-    private String url = "https://pam-firebase-3e5ba-default-rtdb.asia-southeast1.firebasedatabase.app/";
+    private String url = " ";
 
     public ShoppingItemRepository() {
         mDatabase = FirebaseDatabase.getInstance().getReference(url);
