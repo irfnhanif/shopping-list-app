@@ -52,7 +52,7 @@ public class ShoppingAdapter extends RecyclerView.Adapter {
         return shoppingList.size();
     }
 
-    class VH extends RecyclerView.ViewHolder {
+    class VH extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView tvNama;
         public TextView tvJumlah;
         public Button btnEdit;
@@ -64,6 +64,18 @@ public class ShoppingAdapter extends RecyclerView.Adapter {
             tvJumlah = rowView.findViewById(R.id.tvJumlah);
             btnEdit = rowView.findViewById(R.id.btnEdit);
             btnDelete = rowView.findViewById(R.id.btnDelete);
+
+            btnEdit.setOnClickListener(this);
+            btnDelete.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            if (view.getId() == R.id.btnEdit){
+
+            } else {
+
+            }
         }
     }
 }
