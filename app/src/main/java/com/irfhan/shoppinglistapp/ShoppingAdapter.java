@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.irfhan.shoppinglistapp.model.ShoppingItem;
+
 import java.util.ArrayList;
 import java.util.List;
 

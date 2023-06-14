@@ -62,7 +62,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Log.d(TAG, "signInWithEmail:success");
                     FirebaseUser user = mAuth.getCurrentUser();
                     Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                    Intent intentMain = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intentMain = new Intent(LoginActivity.this, ShoppingListActivity.class);
                     LoginActivity.this.startActivity(intentMain);
                 } else {
                     Log.w(TAG, "signInWithEmail:failure", task.getException());

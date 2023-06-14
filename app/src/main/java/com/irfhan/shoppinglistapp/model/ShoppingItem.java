@@ -1,4 +1,4 @@
-package com.irfhan.shoppinglistapp;
+package com.irfhan.shoppinglistapp.model;
 
 public class ShoppingItem {
     private String itemId;

@@ -1,4 +1,4 @@
-package com.irfhan.shoppinglistapp;
+package com.irfhan.shoppinglistapp.model;
 
 import java.util.List;
 

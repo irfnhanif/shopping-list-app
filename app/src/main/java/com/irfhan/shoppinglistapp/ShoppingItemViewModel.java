@@ -6,6 +6,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.irfhan.shoppinglistapp.model.ShoppingItem;
+import com.irfhan.shoppinglistapp.model.ShoppingItemCallback;
+import com.irfhan.shoppinglistapp.model.ShoppingItemRepository;
+
 import java.util.List;
 
 public class ShoppingItemViewModel extends ViewModel {

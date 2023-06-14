@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.Button;
 
+import com.irfhan.shoppinglistapp.model.ShoppingItem;
+
 import java.util.List;
 
 public class ShoppingListActivity extends AppCompatActivity {
