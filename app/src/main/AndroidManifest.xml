@@ -14,10 +14,10 @@
         android:theme="@style/Theme.ShoppingListApp"
         tools:targetApi="31">
         <activity
-            android:name=".ShoppingInsertActivity"
+            android:name=".ShoppingItemInsertActivity"
             android:exported="false" />
         <activity
-            android:name=".ShoppingEditActivity"
+            android:name=".ShoppingItemUpdateActivity"
             android:exported="false" />
         <activity
             android:name=".SignUpActivity"
