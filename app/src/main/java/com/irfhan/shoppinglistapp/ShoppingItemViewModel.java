@@ -10,6 +10,7 @@ import com.irfhan.shoppinglistapp.model.ShoppingItem;
 import com.irfhan.shoppinglistapp.model.ShoppingItemCallback;
 import com.irfhan.shoppinglistapp.model.ShoppingItemRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingItemViewModel extends ViewModel {
@@ -50,5 +51,7 @@ public class ShoppingItemViewModel extends ViewModel {
 
     public void deleteShoppingItem(String noteId) {
         shoppingItemRepository.deleteShoppingItem(noteId);
+        List<ShoppingItem> updatedList = new ArrayList<>(dataList.getValue());
+        dataList.setValue(updatedList);
     }
 }

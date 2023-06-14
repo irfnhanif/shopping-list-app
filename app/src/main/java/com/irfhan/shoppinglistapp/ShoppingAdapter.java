@@ -1,6 +1,8 @@
 package com.irfhan.shoppinglistapp;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.irfhan.shoppinglistapp.model.ShoppingItem;
@@ -18,12 +21,13 @@ import java.util.List;
 public class ShoppingAdapter extends RecyclerView.Adapter {
 
     private List<ShoppingItem> shoppingList = new ArrayList<>();
-
     private final Context ctx;
-    public ShoppingAdapter(Context ctx /*, List<ShoppingItem> list*/) {
+    private ShoppingItemViewModel shoppingItemViewModel;
+    public ShoppingAdapter(Context ctx, ShoppingItemViewModel shoppingItemViewModel) {
         this.ctx = ctx;
-//        this.shoppingList = list;
+        this.shoppingItemViewModel = shoppingItemViewModel;
     }
+
 
     public void setData(List<ShoppingItem> data) {
         shoppingList.clear();
@@ -45,6 +49,19 @@ public class ShoppingAdapter extends RecyclerView.Adapter {
         VH vh = (VH) holder;
         vh.tvNama.setText(s.getName());
         vh.tvJumlah.setText(s.getDescription());
+
+        vh.btnDelete.setOnClickListener(view -> {
+            Handler handler = new Handler(Looper.getMainLooper());
+            Thread thread = new Thread(() -> {
+                ShoppingItemViewModel shoppingItemViewModel = new ViewModelProvider((ShoppingListActivity) ctx).get(ShoppingItemViewModel.class);
+                shoppingItemViewModel.deleteShoppingItem(s.getItemId());
+                handler.post(() -> {
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position, getItemCount());
+                });
+            });
+            thread.start();
+        });
     }
 
     @Override
@@ -52,7 +69,7 @@ public class ShoppingAdapter extends RecyclerView.Adapter {
         return shoppingList.size();
     }
 
-    class VH extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class VH extends RecyclerView.ViewHolder {
         public TextView tvNama;
         public TextView tvJumlah;
         public Button btnEdit;
@@ -64,18 +81,6 @@ public class ShoppingAdapter extends RecyclerView.Adapter {
             tvJumlah = rowView.findViewById(R.id.tvJumlah);
             btnEdit = rowView.findViewById(R.id.btnEdit);
             btnDelete = rowView.findViewById(R.id.btnDelete);
-
-            btnEdit.setOnClickListener(this);
-            btnDelete.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            if (view.getId() == R.id.btnEdit){
-
-            } else {
-
-            }
         }
     }
 }

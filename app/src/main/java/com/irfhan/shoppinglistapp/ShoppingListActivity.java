@@ -16,14 +16,14 @@ import java.util.List;
 public class ShoppingListActivity extends AppCompatActivity {
     Button btnAdd;
     RecyclerView rvShopping;
-
+    ShoppingItemViewModel shoppingItemViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shopping_list_layout);
 
-        ShoppingItemViewModel shoppingListViewModel = new ViewModelProvider(this).get(ShoppingItemViewModel.class);
+        shoppingItemViewModel = new ViewModelProvider(this).get(ShoppingItemViewModel.class);
 
         rvShopping = findViewById(R.id.rvShopping);
         btnAdd.findViewById(R.id.btnAdd);
@@ -31,11 +31,11 @@ public class ShoppingListActivity extends AppCompatActivity {
 
         });
 
-        ShoppingAdapter adapter = new ShoppingAdapter(this);
+        ShoppingAdapter adapter = new ShoppingAdapter(this, shoppingItemViewModel);
         rvShopping.setLayoutManager(new LinearLayoutManager(this));
         rvShopping.setAdapter(adapter);
 
-        shoppingListViewModel.getDataList().observe(this, new Observer<List<ShoppingItem>>() {
+        shoppingItemViewModel.getDataList().observe(this, new Observer<List<ShoppingItem>>() {
             @Override
             public void onChanged(List<ShoppingItem> data) {
                 adapter.setData(data);
