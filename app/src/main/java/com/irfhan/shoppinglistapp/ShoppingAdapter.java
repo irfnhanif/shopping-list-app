@@ -6,10 +6,10 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -50,17 +50,9 @@ public class ShoppingAdapter extends RecyclerView.Adapter {
         vh.tvNama.setText(s.getName());
         vh.tvJumlah.setText(s.getDescription());
 
-        vh.btnDelete.setOnClickListener(view -> {
-            Handler handler = new Handler(Looper.getMainLooper());
-            Thread thread = new Thread(() -> {
-                ShoppingItemViewModel shoppingItemViewModel = new ViewModelProvider((ShoppingListActivity) ctx).get(ShoppingItemViewModel.class);
-                shoppingItemViewModel.deleteShoppingItem(s.getItemId());
-                handler.post(() -> {
-                    notifyItemRemoved(position);
-                    notifyItemRangeChanged(position, getItemCount());
-                });
-            });
-            thread.start();
+        vh.acivDelete.setOnClickListener(v -> {
+            String itemId = s.getItemId();
+            shoppingItemViewModel.deleteShoppingItem(itemId);
         });
     }
 
@@ -72,15 +64,14 @@ public class ShoppingAdapter extends RecyclerView.Adapter {
     class VH extends RecyclerView.ViewHolder {
         public TextView tvNama;
         public TextView tvJumlah;
-        public Button btnEdit;
-        public Button btnDelete;
+        public AppCompatImageView acivEdit, acivDelete;
 
         VH(View rowView) {
             super(rowView);
             tvNama = rowView.findViewById(R.id.tvNama);
             tvJumlah = rowView.findViewById(R.id.tvJumlah);
-            btnEdit = rowView.findViewById(R.id.btnEdit);
-            btnDelete = rowView.findViewById(R.id.btnDelete);
+            acivEdit = rowView.findViewById(R.id.btnEdit);
+            acivDelete = rowView.findViewById(R.id.btnDelete);
         }
     }
 }

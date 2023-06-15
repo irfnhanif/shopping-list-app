@@ -6,11 +6,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.irfhan.shoppinglistapp.helper.ShoppingItemDeletedCallback;
 import com.irfhan.shoppinglistapp.model.ShoppingItem;
-import com.irfhan.shoppinglistapp.model.ShoppingItemCallback;
+import com.irfhan.shoppinglistapp.helper.ShoppingItemCallback;
 import com.irfhan.shoppinglistapp.model.ShoppingItemRepository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ShoppingItemViewModel extends ViewModel {
@@ -55,9 +55,17 @@ public class ShoppingItemViewModel extends ViewModel {
         shoppingItemRepository.updateShoppingItem(noteId, name, description);
     }
 
-    public void deleteShoppingItem(String noteId) {
-        shoppingItemRepository.deleteShoppingItem(noteId);
-        List<ShoppingItem> updatedList = new ArrayList<>(dataList.getValue());
-        dataList.setValue(updatedList);
+    public void deleteShoppingItem(String itemId) {
+        shoppingItemRepository.deleteShoppingItem(itemId, new ShoppingItemDeletedCallback() {
+            @Override
+            public void onShoppingItemDeleted() {
+                dataList.setValue(dataList.getValue());
+            }
+
+            @Override
+            public void onShoppingItemError(String errorMessage) {
+                Log.e("ERROR", errorMessage);
+            }
+        });
     }
 }

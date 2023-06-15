@@ -1,4 +1,6 @@
-package com.irfhan.shoppinglistapp.model;
+package com.irfhan.shoppinglistapp.helper;
+
+import com.irfhan.shoppinglistapp.model.ShoppingItem;
 
 import java.util.List;
 

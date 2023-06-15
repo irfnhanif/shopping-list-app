@@ -23,15 +23,16 @@ public class ShoppingItemInsertActivity extends AppCompatActivity implements Vie
         btnAdd = findViewById(R.id.btn_add);
 
         btnAdd.setOnClickListener(this);
-    }
 
+        shoppingItemViewModel = new ShoppingItemViewModel();
+    }
 
     @Override
     public void onClick(View view) {
         String itemName = etItemName.getText().toString();
         String itemDescription = etItemDescription.getText().toString();
 
-        shoppingItemViewModel = new ShoppingItemViewModel();
         shoppingItemViewModel.addShoppingItem(itemName, itemDescription);
+        finish();
     }
 }

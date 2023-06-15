@@ -28,12 +28,14 @@ public class ShoppingListActivity extends AppCompatActivity implements View.OnCl
         shoppingItemViewModel = new ViewModelProvider(this).get(ShoppingItemViewModel.class);
 
         rvShopping = findViewById(R.id.rvShopping);
-        btnAdd.findViewById(R.id.btnAdd);
+        btnAdd = findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener(this);
 
         ShoppingAdapter adapter = new ShoppingAdapter(this, shoppingItemViewModel);
         rvShopping.setLayoutManager(new LinearLayoutManager(this));
         rvShopping.setAdapter(adapter);
+
+        shoppingItemViewModel.getAllShoppingItems();
 
         shoppingItemViewModel.getDataList().observe(this, new Observer<List<ShoppingItem>>() {
             @Override

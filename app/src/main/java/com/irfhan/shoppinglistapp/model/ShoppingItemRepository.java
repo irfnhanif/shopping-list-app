@@ -8,6 +8,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.irfhan.shoppinglistapp.helper.ShoppingItemCallback;
+import com.irfhan.shoppinglistapp.helper.ShoppingItemDeletedCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +17,10 @@ import java.util.List;
 public class ShoppingItemRepository {
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
-    private String url = "";
+    private String url = "https://pam-firebase-3e5ba-default-rtdb.asia-southeast1.firebasedatabase.app/";
 
     public ShoppingItemRepository() {
-        mDatabase = FirebaseDatabase.getInstance().getReference(url);
+        mDatabase = FirebaseDatabase.getInstance(url).getReference("/");
         mAuth = FirebaseAuth.getInstance();
     }
 
@@ -85,7 +87,7 @@ public class ShoppingItemRepository {
         itemRef.child("description").setValue(description);
     }
 
-    public void deleteShoppingItem(String noteId) {
+    public void deleteShoppingItem(String noteId, ShoppingItemDeletedCallback shoppingItemDeletedCallback) {
         String userId = mAuth.getCurrentUser().getUid();
         DatabaseReference itemRef = mDatabase.child("users").child(userId).child("items").child(noteId);
         itemRef.removeValue();

@@ -9,6 +9,11 @@ public class ShoppingItem {
         this.name = name;
         this.description = description;
     }
+
+    public ShoppingItem(){
+
+    }
+
     public String getItemId() {
         return itemId;
     }
