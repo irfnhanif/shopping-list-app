@@ -6,14 +6,16 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import com.irfhan.shoppinglistapp.model.ShoppingItem;
 
 import java.util.List;
 
-public class ShoppingListActivity extends AppCompatActivity {
+public class ShoppingListActivity extends AppCompatActivity implements View.OnClickListener {
     Button btnAdd;
     RecyclerView rvShopping;
     ShoppingItemViewModel shoppingItemViewModel;
@@ -27,9 +29,7 @@ public class ShoppingListActivity extends AppCompatActivity {
 
         rvShopping = findViewById(R.id.rvShopping);
         btnAdd.findViewById(R.id.btnAdd);
-        btnAdd.setOnClickListener(view -> {
-
-        });
+        btnAdd.setOnClickListener(this);
 
         ShoppingAdapter adapter = new ShoppingAdapter(this, shoppingItemViewModel);
         rvShopping.setLayoutManager(new LinearLayoutManager(this));
@@ -41,5 +41,11 @@ public class ShoppingListActivity extends AppCompatActivity {
                 adapter.setData(data);
             }
         });
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(ShoppingListActivity.this, ShoppingItemInsertActivity.class);
+        startActivity(intent);
     }
 }

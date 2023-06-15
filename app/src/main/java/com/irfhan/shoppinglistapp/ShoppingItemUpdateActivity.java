@@ -9,6 +9,6 @@ public class ShoppingItemUpdateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shopping_edit_layout);
+        setContentView(R.layout.shopping_update_layout);
     }
 }

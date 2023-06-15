@@ -44,6 +44,27 @@ public class ShoppingItemRepository {
         });
     }
 
+    public void getShoppingItem(String itemId, final ShoppingItemCallback callback) {
+        String userId = mAuth.getCurrentUser().getUid();
+        DatabaseReference itemRef = mDatabase.child("users").child(userId).child("items").child(itemId);
+
+        itemRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ShoppingItem shoppingItem = snapshot.getValue(ShoppingItem.class);
+                if (shoppingItem != null) {
+                    callback.onShoppingItemReceived(shoppingItem);
+                } else {
+                    callback.onShoppingItemError("Shopping item not found");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                callback.onShoppingItemError(error.getMessage());
+            }
+        });
+    }
 
 
     public void addShoppingItem(String name, String description) {

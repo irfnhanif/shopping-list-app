@@ -28,6 +28,12 @@ public class ShoppingItemViewModel extends ViewModel {
 
     public void getAllShoppingItems() {
         shoppingItemRepository.getAllShoppingItems(new ShoppingItemCallback() {
+
+            @Override
+            public void onShoppingItemReceived(ShoppingItem item) {
+
+            }
+
             @Override
             public void onShoppingItemReceived(List<ShoppingItem> items) {
                 dataList.setValue(items);
