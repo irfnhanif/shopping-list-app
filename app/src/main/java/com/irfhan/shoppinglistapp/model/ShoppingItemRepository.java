@@ -17,7 +17,7 @@ import java.util.List;
 public class ShoppingItemRepository {
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
-    private String url = "https://pam-firebase-3e5ba-default-rtdb.asia-southeast1.firebasedatabase.app/";
+    private String url = "https://shopping-list-app-64369-default-rtdb.asia-southeast1.firebasedatabase.app/";
 
     public ShoppingItemRepository() {
         mDatabase = FirebaseDatabase.getInstance(url).getReference("/");
