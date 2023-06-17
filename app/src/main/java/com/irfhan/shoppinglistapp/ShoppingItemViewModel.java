@@ -51,8 +51,8 @@ public class ShoppingItemViewModel extends ViewModel {
         shoppingItemRepository.addShoppingItem(name, description);
     }
 
-    public void updateShoppingItem(String noteId, String name, String description) {
-        shoppingItemRepository.updateShoppingItem(noteId, name, description);
+    public void updateShoppingItem(String itemId, String name, String description) {
+        shoppingItemRepository.updateShoppingItem(itemId, name, description);
     }
 
     public void deleteShoppingItem(String itemId) {

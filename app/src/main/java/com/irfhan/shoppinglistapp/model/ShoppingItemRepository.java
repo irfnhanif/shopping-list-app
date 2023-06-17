@@ -17,7 +17,7 @@ import java.util.List;
 public class ShoppingItemRepository {
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
-    private String url = "https://shopping-list-app-64369-default-rtdb.asia-southeast1.firebasedatabase.app/";
+    private String url = "https://pam-firebase-3e5ba-default-rtdb.asia-southeast1.firebasedatabase.app/";
 
     public ShoppingItemRepository() {
         mDatabase = FirebaseDatabase.getInstance(url).getReference("/");
@@ -80,9 +80,9 @@ public class ShoppingItemRepository {
         newItemRef.setValue(shoppingItem);
     }
 
-    public void updateShoppingItem(String noteId, String name, String description) {
+    public void updateShoppingItem(String itemId, String name, String description) {
         String userId = mAuth.getCurrentUser().getUid();
-        DatabaseReference itemRef = mDatabase.child("users").child(userId).child("items").child(noteId);
+        DatabaseReference itemRef = mDatabase.child("users").child(userId).child("items").child(itemId);
         itemRef.child("name").setValue(name);
         itemRef.child("description").setValue(description);
     }
