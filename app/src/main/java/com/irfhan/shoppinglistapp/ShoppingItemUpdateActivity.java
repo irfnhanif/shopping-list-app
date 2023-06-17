@@ -20,13 +20,13 @@ public class ShoppingItemUpdateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shopping_update_layout);
 
-        shoppingItem = getIntent().getParcelableExtra("extra_item");
+        Bundle bundle = getIntent().getBundleExtra("bundle");
 
-        String id = shoppingItem.getItemId();
+        String itemId = bundle.getString("itemId");
         etEditName = findViewById(R.id.et_edit_name);
-        etEditName.setText(shoppingItem.getName());
+        etEditName.setText(bundle.getString("name"));
         etEditDescription = findViewById(R.id.et_edit_description);
-        etEditDescription.setText(shoppingItem.getDescription());
+        etEditDescription.setText(bundle.getString("description"));
         btnUpdate = findViewById(R.id.btn_edit);
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
@@ -34,7 +34,7 @@ public class ShoppingItemUpdateActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String name = etEditName.getText().toString();
                 String description = etEditDescription.getText().toString();
-                shoppingItemViewModel.updateShoppingItem(id, name, description);
+                shoppingItemViewModel.updateShoppingItem(itemId, name, description);
                 finish();
             }
         });

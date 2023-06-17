@@ -2,6 +2,7 @@ package com.irfhan.shoppinglistapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
@@ -53,8 +54,11 @@ public class ShoppingAdapter extends RecyclerView.Adapter {
 
         vh.acivEdit.setOnClickListener(view -> {
             Intent intent = new Intent(ctx, ShoppingItemUpdateActivity.class);
-            intent.putExtra("extra_item", shoppingList.get(position).getItemId());
-
+            Bundle bundle = new Bundle();
+            bundle.putString("itemId", s.getItemId());
+            bundle.putString("name", s.getName());
+            bundle.putString("description", s.getDescription());
+            intent.putExtra("bundle",bundle);
             ctx.startActivity(intent);
         });
 
